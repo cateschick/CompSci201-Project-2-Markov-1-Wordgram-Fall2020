@@ -112,8 +112,10 @@ public class WordGram {
 
 		// add the last word at the end of the array
 		newarray[newarray.length-1] = last;
-		WordGram wg = new WordGram(newarray,0,newarray.length);
 
+		// create wordgram object wg and return it
+		WordGram wg = new WordGram(newarray,0,newarray.length);
+		
 		return wg;
 	}
 
@@ -128,7 +130,10 @@ public class WordGram {
 			myToString = myToString + (myWords[i]);
 			myToString = myToString + (" ");
 		}
-		System.out.println(myToString);
-		return myToString;
+
+		// debugging: too many spaces, need to trim the string
+		String trimmed = myToString.trim();
+
+		return trimmed;
 	}
 }
