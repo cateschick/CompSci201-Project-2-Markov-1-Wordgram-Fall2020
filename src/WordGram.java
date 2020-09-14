@@ -51,7 +51,7 @@ public class WordGram {
 	}
 
 	/**
-	 * Return true when parameter passed is a WordGram object with the same
+	 * Returns true when parameter passed is a WordGram object with the same
 	 * strings in the same order as this object
 	 * @param o
 	 * @return
@@ -76,10 +76,9 @@ public class WordGram {
 			if (!this.wordAt(i).equals(other.wordAt(i))) {
 				return false;
 			}
-			else {
-				return true;
-			}
 		}
+
+		// if false hasn't been returned yet, it's a wordgram
 
 		return true;
 	}
@@ -91,6 +90,7 @@ public class WordGram {
 	@Override
 	public int hashCode(){
 		// TODO: complete this method: assign to myHash as needed
+		myHash = this.toString().hashCode();
 		return myHash;
 	}
 	
@@ -102,29 +102,33 @@ public class WordGram {
 	 * @return
 	 */
 	public WordGram shiftAdd(String last) {
-		WordGram wg = new WordGram(myWords,0,myWords.length);
 		// TODO: Complete this method
-		String[] words = new String[this.length()];
-		myWords = words;
+		String[] newarray = new String[this.length()];
 
-		for (int i = 0; i < myWords.length-1; i++) {
-			words[i] = this.wordAt(i+1);
+		// shift the word at (i+1) in the original array to newarray[i]
+		for (int i = 0; i < newarray.length-1; i++) {
+			newarray[i] = this.wordAt(i+1);
 		}
 
-		words[words.length-1] = last;
+		// add the last word at the end of the array
+		newarray[newarray.length-1] = last;
+		WordGram wg = new WordGram(newarray,0,newarray.length);
 
-		WordGram ret = new WordGram(words, 0, words.length);
-
-		return ret;
+		return wg;
 	}
 
 	@Override
 	public String toString(){
 		// TODO: Complete this method, assign to myToString as needed
+
+		String myToString = "";
+
+		// iterate through myWords and make a string with a space between words
 		for (int i = 0; i < myWords.length; i++) {
 			myToString = myToString + (myWords[i]);
 			myToString = myToString + (" ");
 		}
+		System.out.println(myToString);
 		return myToString;
 	}
 }
